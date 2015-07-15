@@ -1,6 +1,10 @@
 // ! ! !
 // Three Bugs
 
+//changes - line 21 - entered in an 'i' within the calculateSTI parameter array so that it will loop through each array since we have an array of arrays.
+//        - line 24 - entered in an 'i' within the array parameter of the createTextNode so that it will also loop through each item of each array as the loop continues.
+//        - line 46 - added Math.round function to the base salary variable declaration to round the numbers to the nearest whole number.
+
 var arrayAtticus = ["Atticus", "2405", "47000", 3];
 var arrayJem = ["Jem", "62347", "63500", 4];
 var arrayBoo = ["Boo", "11435", "54000", 3];
@@ -16,7 +20,7 @@ position = document.getElementById('content');
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
 for(var i = 0; i < array.length; i++){
-	array[i] = calculateSTI(array);
+	array[i] = calculateSTI(array[i]);
  	newEl = document.createElement('li');
 	newText = document.createTextNode(array[i]);
 	newEl.appendChild(newText);
@@ -33,12 +37,13 @@ function calculateSTI(array){
   var reviewScore = array[3];
 
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
+
   if(bonus > 0.13){
     bonus = 0.13;
-  }
+    }
 
   newArray[1] = bonus;
-  newArray[2] = baseSalary * (1.0 + bonus);
+  newArray[2] = Math.round(baseSalary * (1.0 + bonus));
   newArray[3] = baseSalary * bonus;
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
@@ -63,7 +68,7 @@ function getBaseSTI(reviewScore){
       basePercent = 0.10;
       break;
   }
-  return basePercent - 1;
+  return basePercent;
 }
 
 function getYearAdjustment(employeeNumber){
