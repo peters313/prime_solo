@@ -12,6 +12,7 @@
 
 .info ul:hover{
 	transform: translate(100px);
+	transition delay: 3sec;
 	color: #00FF00;
 	background-color: #000000;
 }

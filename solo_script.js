@@ -5,12 +5,19 @@
 //        - line 24 - entered in an 'i' within the array parameter of the createTextNode so that it will also loop through each item of each array as the loop continues.
 //        - line 46 - added Math.round function to the base salary variable declaration to round the numbers to the nearest whole number.
 
-var arrayAtticus = ["Atticus", "2405", "47000", 3];
-var arrayJem = ["Jem", "62347", "63500", 4];
-var arrayBoo = ["Boo", "11435", "54000", 3];
-var arrayScout = ["Scout", "6243", "74750", 5];
+function newEmployee(name, employeeId, annSalary, annReview){
+  this.name = name;
+  this.employeeId = employeeId;
+  this.annSalary = annSalary;
+  this.annReview = annReview;
+}
 
-var array = [arrayAtticus, arrayJem, arrayBoo, arrayScout];
+var Atticus = new newEmployee("Atticus", "2405", "47000", 3);
+var Jem = new newEmployee("Jem", "62347", "63500", 4);
+var Boo = new newEmployee("Boo", "11435", "54000", 3);
+var Scout = new newEmployee ("Scout", "6243", "74750", 5);
+
+var array = [Atticus, Jem, Boo, Scout];
 
 //Create variables used to write to the DOM
 var newEl, newText, position;
@@ -27,14 +34,14 @@ for(var i = 0; i < array.length; i++){
 	position.appendChild(newEl);
 }
 
-function calculateSTI(array){
+function calculateSTI(newEmployee){
   var newArray = [];
 
-  newArray[0] = array[0];
+  newArray[0] = newEmployee.name;
 
-  var employeeNumber = array[1];
-  var baseSalary = array[2];
-  var reviewScore = array[3];
+  var employeeNumber = newEmployee.employeeId;
+  var baseSalary = newEmployee.annSalary;
+  var reviewScore = newEmployee.annReview;
 
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
 
@@ -44,7 +51,7 @@ function calculateSTI(array){
 
   newArray[1] = bonus;
   newArray[2] = Math.round(baseSalary * (1.0 + bonus));
-  newArray[3] = baseSalary * bonus;
+  newArray[3] = Math.round(baseSalary * bonus);
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
 }
