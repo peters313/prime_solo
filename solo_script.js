@@ -22,7 +22,7 @@ position = document.getElementById('content');
 for(var i = 0; i < array.length; i++){
 	array[i] = calculateSTI(array[i]);
  	newEl = document.createElement('li');
-	newText = document.createTextNode(array[i]);
+	newText = document.createTextNode(array[i].join(", "));
 	newEl.appendChild(newText);
 	position.appendChild(newEl);
 }

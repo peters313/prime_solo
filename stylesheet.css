@@ -1,0 +1,17 @@
+.info{
+	color: #0000FF;
+}
+
+.info ul{
+	list-style-type: none;
+	text-align: center;
+	width: 250px;
+	padding: 0 0 0 0;
+	border: 1px solid black;
+}
+
+.info ul:hover{
+	transform: translate(100px);
+	color: #00FF00;
+	background-color: #000000;
+}
